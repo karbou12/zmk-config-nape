@@ -89,6 +89,16 @@
             tapping-term-ms = <200>;
         };
 
+        it_mkp: interrupted_mkp {
+            compatible = "zmk,behavior-hold-tap";
+            label = "INTERRUPTED_MKP";
+            bindings = <&mo>, <&mkp>;
+            flavor = "tap-unless-interrupted";
+
+            #binding-cells = <2>;
+            tapping-term-ms = <400>;
+        };
+
         mod_mkp: mod_mkp {
             compatible = "zmk,behavior-hold-tap";
             label = "MOD_MKP";
@@ -126,7 +136,7 @@
 // Front                                                                  Back
 //╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
 //|                | trackball      |                |                |     |  1         |  2         |  3         |
-  &lt_mkp L_SCROLL MB3         &lt_mkp L_MISSION MB2 &lt_mkp L_SPACES MB1   &mo L_BT_SEL &mo L_BT_CLR &mo L_ORI
+  &lt_mkp L_SCROLL MB3         &it_mkp L_MISSION MB2 &it_mkp L_SPACES MB1   &mo L_BT_SEL &mo L_BT_CLR &mo L_ORI
 //╰────────────────┴────────────────┴────────────────┴────────────────╯     ╰────────────┴────────────┴────────────╯
             >;
         };
@@ -137,7 +147,7 @@
             bindings = <
 //╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
 //|                | trackball      |                |                |     |  1         |  2         |  3         |
-  &lt_mkp L_SCROLL MB3         &lt_mkp L_MISSION MB2 &lt_mkp L_SPACES MB1   &mo L_BT_SEL &mo L_BT_CLR &mo L_ORI
+  &lt_mkp L_SCROLL MB3         &it_mkp L_MISSION MB2 &it_mkp L_SPACES MB1   &mo L_BT_SEL &mo L_BT_CLR &mo L_ORI
 //╰────────────────┴────────────────┴────────────────┴────────────────╯     ╰────────────┴────────────┴────────────╯
             >;
         };
@@ -148,7 +158,7 @@
             bindings = <
 //╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
 //|                | trackball      |                |                |     |  1         |  2         |  3         |
-  &lt_mkp L_SCROLL MB3         &lt_mkp L_MISSION MB2 &lt_mkp L_SPACES MB1   &mo L_BT_SEL &mo L_BT_CLR &mo L_ORI
+  &lt_mkp L_SCROLL MB3         &it_mkp L_MISSION MB2 &it_mkp L_SPACES MB1   &mo L_BT_SEL &mo L_BT_CLR &mo L_ORI
 //╰────────────────┴────────────────┴────────────────┴────────────────╯     ╰────────────┴────────────┴────────────╯
             >;
         };
@@ -159,7 +169,7 @@
             bindings = <
 //╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
 //|                | trackball      |                |                |     |  1         |  2         |  3         |
-  &lt_mkp L_SCROLL MB3         &lt_mkp L_MISSION MB2 &lt_mkp L_SPACES MB1   &mo L_BT_SEL &mo L_BT_CLR &mo L_ORI
+  &lt_mkp L_SCROLL MB3         &it_mkp L_MISSION MB2 &it_mkp L_SPACES MB1   &mo L_BT_SEL &mo L_BT_CLR &mo L_ORI
 //╰────────────────┴────────────────┴────────────────┴────────────────╯     ╰────────────┴────────────┴────────────╯
             >;
         };
@@ -170,7 +180,7 @@
             bindings = <
 //╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
 //|                | trackball      |                |                |     |  1         |  2         |  3         |
-  &lt_mkp L_SCROLL MB3         &lt_mkp L_MISSION MB2 &lt_mkp L_SPACES MB1   &mo L_BT_SEL &mo L_BT_CLR &mo L_ORI
+  &lt_mkp L_SCROLL MB3         &it_mkp L_MISSION MB2 &it_mkp L_SPACES MB1   &mo L_BT_SEL &mo L_BT_CLR &mo L_ORI
 //╰────────────────┴────────────────┴────────────────┴────────────────╯     ╰────────────┴────────────┴────────────╯
             >;
         };
@@ -181,7 +191,7 @@
             bindings = <
 //╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
 //|                | trackball      |                |                |     |  1         |  2         |  3         |
-  &lt_mkp L_SCROLL MB3         &lt_mkp L_MISSION MB2 &lt_mkp L_SPACES MB1   &mo L_BT_SEL &mo L_BT_CLR &mo L_ORI
+  &lt_mkp L_SCROLL MB3         &it_mkp L_MISSION MB2 &it_mkp L_SPACES MB1   &mo L_BT_SEL &mo L_BT_CLR &mo L_ORI
 //╰────────────────┴────────────────┴────────────────┴────────────────╯     ╰────────────┴────────────┴────────────╯
             >;
         };
@@ -192,7 +202,7 @@
             bindings = <
 //╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
 //|                | trackball      |                |                |     |  1         |  2         |  3         |
-  &lt_mkp L_SCROLL MB3         &lt_mkp L_MISSION MB2 &lt_mkp L_SPACES MB1   &mo L_BT_SEL &mo L_BT_CLR &mo L_ORI
+  &lt_mkp L_SCROLL MB3         &it_mkp L_MISSION MB2 &it_mkp L_SPACES MB1   &mo L_BT_SEL &mo L_BT_CLR &mo L_ORI
 //╰────────────────┴────────────────┴────────────────┴────────────────╯     ╰────────────┴────────────┴────────────╯
             >;
         };
@@ -203,7 +213,7 @@
             bindings = <
 //╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
 //|                | trackball      |                |                |     |  1         |  2         |  3         |
-  &lt_mkp L_SCROLL MB3         &lt_mkp L_MISSION MB2 &lt_mkp L_SPACES MB1   &mo L_BT_SEL &mo L_BT_CLR &mo L_ORI
+  &lt_mkp L_SCROLL MB3         &it_mkp L_MISSION MB2 &it_mkp L_SPACES MB1   &mo L_BT_SEL &mo L_BT_CLR &mo L_ORI
 //╰────────────────┴────────────────┴────────────────┴────────────────╯     ╰────────────┴────────────┴────────────╯
             >;
         };
