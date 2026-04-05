@@ -8,9 +8,27 @@
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <behaviors.dtsi>
+#include <behaviors/pmw3610_rotation.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
+
+#define L_USB_SOUTH 0
+#define L_USB_WEST  2
+#define L_USB_NORTH 4
+#define L_USB_KIMON 5
+#define L_USB_EAST  6
+#define L_BT_SEL    8
+#define L_BT_CLR    9
+#define L_SCROLL   10
+#define L_SNIPE    11
+#define L_TB       12
+#define L_SPACES   13
+#define L_MISSION  14
+#define LEFT_SPACE   LC(LEFT)
+#define RIGHT_SPACE  LC(RIGHT)
+#define MISSION_CTRL LC(UP)
+#define EXPOSE       LC(DOWN)
 
 // マウス移動の設定
 
@@ -107,24 +125,17 @@
             #binding-cells = <2>;
             tapping-term-ms = <200>;
         };
+
+        td0: tap_dance_0 {
+            compatible = "zmk,behavior-tap-dance";
+            label = "MB3, Scroll TraboShift";
+            bindings = <&lt_mkp L_SCROLL MB3>, <&mo L_TB>;
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+        };
     };
 
     // キーマップの定義
-#define L_USB_SOUTH 0
-#define L_USB_WEST  2
-#define L_USB_NORTH 4
-#define L_USB_KIMON 5
-#define L_USB_EAST  6
-#define L_BT_SEL    8
-#define L_BT_CLR    9
-#define L_SCROLL   10
-#define L_ORI      11
-#define L_SPACES   12
-#define L_MISSION  13
-#define LEFT_SPACE   LC(LEFT)
-#define RIGHT_SPACE  LC(RIGHT)
-#define MISSION_CTRL LC(UP)
-#define EXPOSE       LC(DOWN)
 
     keymap {
         compatible = "zmk,keymap";
@@ -136,7 +147,7 @@
 // Front                                                                  Back
 //╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
 //|                | trackball      |                |                |     |  1         |  2         |  3         |
-  &lt_mkp L_SCROLL MB3         &it_mkp L_MISSION MB2 &it_mkp L_SPACES MB1   &mo L_BT_SEL &mo L_BT_CLR &mo L_ORI
+  &td0                         &it_mkp L_MISSION MB2 &it_mkp L_SPACES MB1   &mo L_BT_SEL &mo L_BT_CLR &mo L_TB
 //╰────────────────┴────────────────┴────────────────┴────────────────╯     ╰────────────┴────────────┴────────────╯
             >;
         };
@@ -246,7 +257,7 @@
             bindings = <
 //╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
 //|                | trackball      |                |                |     |  1         |  2         |  3         |
-  &lt_mkp L_ORI MB3                 &lt_mkp L_ORI MB5 &lt_mkp L_ORI MB4     &none        &none        &none
+  &lt_mkp L_TB MB3                  &lt_mkp L_TB MB5 &lt_mkp L_TB MB4       &none        &none        &none
 //╰────────────────┴────────────────┴────────────────┴────────────────╯     ╰────────────┴────────────┴────────────╯
             >;
 
@@ -257,17 +268,30 @@
                 <&mouse_scrl SCRL_UP SCRL_DOWN>;
         };
 
-        // レイヤー11（使用向き選択レイヤー）
+        // レイヤー11（Snipeレイヤー）
 
-        orientation_layer {
+        snipe_layer {
             bindings = <
 //╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
 //|                | trackball      |                |                |     |  1         |  2         |  3         |
-  &to L_USB_KIMON                   &to L_USB_WEST  &to L_USB_EAST          &to L_USB_SOUTH &to L_USB_NORTH &none
+  &mkp MB3                          &mkp MB2         &mkp MB1               &none        &none        &none
+//╰────────────────┴────────────────┴────────────────┴────────────────╯     ╰────────────┴────────────┴────────────╯
+            >;
+
+        };
+
+        // レイヤー12（TraboShiftレイヤー）
+
+        trabo_shift_layer {
+            bindings = <
+//╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
+//|                | trackball      |                |                |     |  1         |  2         |  3         |
+  &to L_USB_KIMON                   &tb_rot_45 ROT_CW   &tb_rot_45 ROT_CCW  &to L_USB_SOUTH &to L_USB_NORTH &none
 //╰────────────────┴────────────────┴────────────────┴────────────────╯     ╰────────────┴────────────┴────────────╯
             >;
         };
 
+        // レイヤー13（Spacesレイヤー）
         spaces_layer {
             bindings = <
 //╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
@@ -277,6 +301,7 @@
             >;
         };
 
+        // レイヤー14（Mission Controlレイヤー）
         mission_layer {
             bindings = <
 //╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
@@ -294,9 +319,15 @@
 
         // Key1、2同時押しでスクロールレイヤーへ
 
-        combo_layer9 {
+        combo_scroll_layer {
             bindings = <&mo 10>;
             key-positions = <1 2>;
+            timeout-ms = <50>;
+        };
+
+        combo_snipe_layer {
+            bindings = <&mo 11>;
+            key-positions = <0 1>;
             timeout-ms = <50>;
         };
     };

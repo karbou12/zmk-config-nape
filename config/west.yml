@@ -16,8 +16,8 @@ manifest:
       revision: main
       import: app/west.yml
     - name: zmk-pmw3610-driver-nape
-      remote: menbou0202
-      revision: main
+      remote: karbou12
+      revision: develop
     - name: zmk-rgbled-widget
       remote: caksoylar
       revision: main
