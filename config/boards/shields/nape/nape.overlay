@@ -125,7 +125,7 @@
         scroll-layers = <10>;
 
         // Snipe layers: uncomment and fill in layer numbers to enable snipe mode
-        snipe-layers = <11>;
+        snipe-layers = <12>;
 
         // Default orientation layer at boot (0 = 0°, 1 = 45°, ... 7 = 315°)
         default-orientation-layer = <6>;
