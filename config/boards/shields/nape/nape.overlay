@@ -107,7 +107,7 @@
 
         // CPI settings: cpi for normal MOVE mode, snipe-cpi for precision mode
         cpi = <800>;
-        // snipe-cpi = <200>;  // Uncomment and add snipe-layers to enable snipe mode
+        snipe-cpi = <200>;  // Uncomment and add snipe-layers to enable snipe mode
 
         // Axis: no hardware inversion here.
         // X axis inversion is applied in software after rotation via CONFIG_PMW3610_ALT_INVERT_X.
@@ -125,7 +125,7 @@
         scroll-layers = <10>;
 
         // Snipe layers: uncomment and fill in layer numbers to enable snipe mode
-        // snipe-layers = <11>;
+        snipe-layers = <11>;
 
         // Default orientation layer at boot (0 = 0°, 1 = 45°, ... 7 = 315°)
         default-orientation-layer = <6>;
