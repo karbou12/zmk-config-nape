@@ -21,8 +21,8 @@
 #define L_BT_SEL    8
 #define L_BT_CLR    9
 #define L_SCROLL   10
-#define L_SNIPE    11
-#define L_TB       12
+#define L_TB       11
+#define L_SNIPE    12
 #define L_SPACES   13
 #define L_MISSION  14
 #define LEFT_SPACE   LC(LEFT)
@@ -268,25 +268,24 @@
                 <&mouse_scrl SCRL_UP SCRL_DOWN>;
         };
 
-        // レイヤー11（Snipeレイヤー）
-
-        snipe_layer {
-            bindings = <
-//╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
-//|                | trackball      |                |                |     |  1         |  2         |  3         |
-  &mkp MB3                          &mkp MB2         &mkp MB1               &none        &none        &none
-//╰────────────────┴────────────────┴────────────────┴────────────────╯     ╰────────────┴────────────┴────────────╯
-            >;
-
-        };
-
-        // レイヤー12（TraboShiftレイヤー）
+        // レイヤー11（TraboShiftレイヤー）
 
         trabo_shift_layer {
             bindings = <
 //╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
 //|                | trackball      |                |                |     |  1         |  2         |  3         |
   &to L_USB_KIMON                   &tb_rot_45 ROT_CW   &tb_rot_45 ROT_CCW  &to L_USB_SOUTH &to L_USB_NORTH &none
+//╰────────────────┴────────────────┴────────────────┴────────────────╯     ╰────────────┴────────────┴────────────╯
+            >;
+        };
+
+        // レイヤー12（Snipeレイヤー）
+
+        snipe_layer {
+            bindings = <
+//╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
+//|                | trackball      |                |                |     |  1         |  2         |  3         |
+  &mkp MB3                          &mkp MB2         &mkp MB1               &none        &none        &none
 //╰────────────────┴────────────────┴────────────────┴────────────────╯     ╰────────────┴────────────┴────────────╯
             >;
         };
@@ -320,13 +319,13 @@
         // Key1、2同時押しでスクロールレイヤーへ
 
         combo_scroll_layer {
-            bindings = <&mo 10>;
+            bindings = <&mo L_SCROLL>;
             key-positions = <1 2>;
             timeout-ms = <50>;
         };
 
         combo_snipe_layer {
-            bindings = <&mo 11>;
+            bindings = <&mo L_SNIPE>;
             key-positions = <0 1>;
             timeout-ms = <50>;
         };
