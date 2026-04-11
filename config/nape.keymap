@@ -24,8 +24,7 @@
 #define L_SCROLL   10
 #define L_TB       11
 #define L_SNIPE    12
-#define L_SPACES   13
-#define L_MISSION  14
+#define L_TAB      13
 #define LEFT_SPACE   LC(LEFT)
 #define RIGHT_SPACE  LC(RIGHT)
 #define MISSION_CTRL LC(UP)
@@ -168,6 +167,14 @@
         };
     };
 
+    macro {
+        app_list: app_list {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp GLOBE>, <&macro_tap &kp LS(A)>, <&macro_release &kp GLOBE>;
+        };
+    };
+
     // キーマップの定義
 
     keymap {
@@ -180,7 +187,7 @@
 // Front                                                                  Back
 //╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
 //|                | trackball      |                |                |     |  1         |  2         |  3         |
-  &td0                         &it_mkp L_MISSION MB2 &it_mkp L_SPACES MB1   &mo L_BT_SEL &mo L_BT_CLR &mo L_TB
+  &td0                             &lt_mkp L_TAB MB2 &it_mkp L_TAB MB1      &mo L_BT_SEL &mo L_BT_CLR &mo L_TB
 //╰────────────────┴────────────────┴────────────────┴────────────────╯     ╰────────────┴────────────┴────────────╯
             >;
         };
@@ -323,22 +330,12 @@
             >;
         };
 
-        // レイヤー13（Spacesレイヤー）
-        spaces_layer {
+        // レイヤー13（Tabレイヤー）
+        tab_layer {
             bindings = <
 //╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
 //|                | trackball      |                |                |     |  1         |  2         |  3         |
-  &kp RIGHT_SPACE                   &kp LEFT_SPACE   &none                  &none        &none        &none
-//╰────────────────┴────────────────┴────────────────┴────────────────╯     ╰────────────┴────────────┴────────────╯
-            >;
-        };
-
-        // レイヤー14（Mission Controlレイヤー）
-        mission_layer {
-            bindings = <
-//╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
-//|                | trackball      |                |                |     |  1         |  2         |  3         |
-  &kp EXPOSE                        &none            &kp MISSION_CTRL       &none        &none        &none
+  &app_list                         &kp RIGHT_TAB    &kp LEFT_TAB           &none        &none        &none
 //╰────────────────┴────────────────┴────────────────┴────────────────╯     ╰────────────┴────────────┴────────────╯
             >;
         };
