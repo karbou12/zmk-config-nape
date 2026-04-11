@@ -28,7 +28,7 @@ manifest:
     - name: zmk-input-inertia
       remote: amgskobo
       revision: main
-    - name: zmk_mouse_gesture
+    - name: zmk-mouse-gesture
       remote: kot149
       revision: v1
   self:
