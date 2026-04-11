@@ -61,7 +61,7 @@
         >;
     };
 
-    trackball_listener {
+    trackball_listener: trackball_listener0 {
         compatible = "zmk,input-listener";
         device = <&trackball>;
         scroller {
