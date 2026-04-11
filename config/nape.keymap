@@ -12,6 +12,7 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
+#include <mouse-gesture.dtsi>
 
 #define L_USB_SOUTH 0
 #define L_USB_WEST  2
@@ -29,6 +30,8 @@
 #define RIGHT_SPACE  LC(RIGHT)
 #define MISSION_CTRL LC(UP)
 #define EXPOSE       LC(DOWN)
+#define LEFT_TAB     LS(LC(TAB))
+#define RIGHT_TAB    LC(TAB)
 
 // マウス移動の設定
 
@@ -46,6 +49,36 @@
     trigger-period-ms = <10>;    // 10ミリ秒ごとにトリガー
     time-to-max-speed-ms = <0>;  // 即座に最大速度に
     acceleration-exponent = <0>;  // 加速なし
+};
+
+&zip_mouse_gesture {
+    stroke-size = <200>; // default: 200
+    enable-eager-mode;
+
+    right_space {
+        pattern = <GESTURE_RIGHT>;
+        bindings = <&kp RIGHT_SPACE>;
+    };
+
+    left_space {
+        pattern = <GESTURE_LEFT>;
+        bindings = <&kp LEFT_SPACE>;
+    };
+
+    mission_ctrl {
+        pattern = <GESTURE_UP>;
+        bindings = <&kp MISSION_CTRL>;
+    };
+
+    expose {
+        pattern = <GESTURE_DOWN>;
+        bindings = <&kp EXPOSE>;
+    };
+};
+
+&trackball_listener {
+    compatible = "zmk,input-listener";
+    input-processors = <&zip_mouse_gesture>;
 };
 
 // 入力プロセッサーの設定
@@ -316,10 +349,14 @@
     combos {
         compatible = "zmk,combos";
 
-        // Key1、2同時押しでスクロールレイヤーへ
+        // combo_scroll_layer {
+        //     bindings = <&mo L_SCROLL>;
+        //     key-positions = <1 2>;
+        //     timeout-ms = <50>;
+        // };
 
-        combo_scroll_layer {
-            bindings = <&mo L_SCROLL>;
+        combo_mouse_gester {
+            bindings = <&mouse_gesture>;
             key-positions = <1 2>;
             timeout-ms = <50>;
         };
