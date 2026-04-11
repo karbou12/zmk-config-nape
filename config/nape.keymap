@@ -263,9 +263,9 @@
 
             // トラックボールの動きをスクロールに変換
 
-            sensor-bindings =
-                <&mouse_scrl SCRL_DOWN SCRL_UP>,
-                <&mouse_scrl SCRL_UP SCRL_DOWN>;
+            //sensor-bindings =
+            //    <&mouse_scrl SCRL_DOWN SCRL_UP>,
+            //    <&mouse_scrl SCRL_UP SCRL_DOWN>;
         };
 
         // レイヤー11（TraboShiftレイヤー）
