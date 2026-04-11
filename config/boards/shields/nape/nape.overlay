@@ -1,6 +1,8 @@
 #include <dt-bindings/zmk/matrix_transform.h>
+#include <dt-bindings/zmk/input_transform.h>
 #include <physical_layouts.dtsi>
 #include <dt-bindings/input/input-event-codes.h>
+#include <zmk-input-inertia/input/processor/input_inertia.dtsi>
 
 / {
     // LED aliases required by zmk-rgbled-widget.
@@ -64,7 +66,9 @@
         device = <&trackball>;
         scroller {
             layers = <10>;
-            input-processors = <&zip_xy_to_scroll_mapper>;
+            input-processors = <&zip_xy_to_scroll_mapper &zip_scroll_scaler 1 50>,
+                               <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,
+                               <&zip_inertia>;
         };
     };
 };
@@ -130,4 +134,21 @@
         // Default orientation layer at boot (0 = 0°, 1 = 45°, ... 7 = 315°)
         default-orientation-layer = <6>;
     };
+};
+
+&zip_inertia {
+    // 慣性が始まるまでの待ち時間 (推奨: センサーのポーリングレートの2倍以上)
+    trigger-ms = <35>; 
+
+    // --- マウス移動の設定 ---
+    move-decay-factor-int = <90>;       // 減衰率 (0-100)
+    move-report-interval-ms = <35>;     // レポート送信間隔 (ms)
+    move-threshold-start = <15>;        // 慣性が発動する最小移動量 (pix/report)
+    move-threshold-stop = <1>;          // 慣性が停止する移動量 (pix/report)
+
+    // --- スクロールの設定 ---
+    scroll-decay-factor-int = <90>;    // スクロール減衰率
+    scroll-report-interval-ms = <65>;  // スクロールレポート間隔 (ms)
+    scroll-threshold-start = <1>;      // 慣性が発動する最小スクロール量 (pix/report)
+    scroll-threshold-stop = <0>;       // 慣性が停止するスクロール量 (pix/report)
 };
