@@ -22,7 +22,7 @@
 #define L_BT_SEL    8
 #define L_BT_CLR    9
 #define L_SCROLL   10
-#define L_TB       11
+#define L_TB_SHIFT 11
 #define L_SNIPE    12
 #define L_TAB      13
 #define LEFT_SPACE   LC(LEFT)
@@ -158,10 +158,10 @@
             tapping-term-ms = <200>;
         };
 
-        td0: tap_dance_0 {
+        td_scrl_mb3_tbs: td_scrl_mb3_tbs {
             compatible = "zmk,behavior-tap-dance";
-            label = "MB3, Scroll TraboShift";
-            bindings = <&lt_mkp L_SCROLL MB3>, <&mo L_TB>;
+            label = "H:Scroll, DT:MB3, DH:TraboShift";
+            bindings = <&mo L_SCROLL>, <&lt_mkp L_TB_SHIFT MB3>;
             #binding-cells = <0>;
             tapping-term-ms = <300>;
         };
@@ -187,7 +187,7 @@
 // Front                                                                  Back
 //╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
 //|                | trackball      |                |                |     |  1         |  2         |  3         |
-  &td0                             &lt_mkp L_TAB MB2 &it_mkp L_TAB MB1      &mo L_BT_SEL &mo L_BT_CLR &mo L_TB
+  &td_scrl_mb3_tbs                 &lt_mkp L_TAB MB2 &it_mkp L_TAB MB1      &mo L_BT_SEL &mo L_BT_CLR &mo L_TB_SHIFT
 //╰────────────────┴────────────────┴────────────────┴────────────────╯     ╰────────────┴────────────┴────────────╯
             >;
         };
@@ -297,7 +297,7 @@
             bindings = <
 //╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
 //|                | trackball      |                |                |     |  1         |  2         |  3         |
-  &lt_mkp L_TB MB3                  &lt_mkp L_TB MB5 &lt_mkp L_TB MB4       &none        &none        &none
+  &none                             &mkp MB5         &mkp MB4               &none        &none        &none
 //╰────────────────┴────────────────┴────────────────┴────────────────╯     ╰────────────┴────────────┴────────────╯
             >;
 
