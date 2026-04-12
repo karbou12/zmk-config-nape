@@ -132,7 +132,7 @@
 
         lt_mkp: lt_mkp {
             compatible = "zmk,behavior-hold-tap";
-            label = "LT_MKP";
+            label = "T:mkp, H:Layer";
             bindings = <&mo>, <&mkp>;
 
             #binding-cells = <2>;
@@ -141,7 +141,7 @@
 
         it_mkp: interrupted_mkp {
             compatible = "zmk,behavior-hold-tap";
-            label = "INTERRUPTED_MKP";
+            label = "T:mkp, H in term:Layer";
             bindings = <&mo>, <&mkp>;
             flavor = "tap-unless-interrupted";
 
@@ -151,7 +151,7 @@
 
         mod_mkp: mod_mkp {
             compatible = "zmk,behavior-hold-tap";
-            label = "MOD_MKP";
+            label = "Mod Tap with mkp";
             bindings = <&kp>, <&mkp>;
 
             #binding-cells = <2>;
