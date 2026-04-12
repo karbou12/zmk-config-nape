@@ -41,6 +41,25 @@
 #define LEFT_TAB     LS(LC(TAB))
 #define RIGHT_TAB    LC(TAB)
 
+// macro with globe
+#define APP_LIST   globe_macro LS(A)
+#define MAX_WIN    globe_macro LC(F)
+
+// not define because globe is ignored in these cases....
+// #define USE_GLOBE_CTRL
+#ifdef USE_GLOBE_CTRL
+#define LEFT_WIN   globe_macro LC(LEFT)
+#define RIGHT_WIN  globe_macro LC(RIGHT)
+#define UP_WIN     globe_macro LC(UP)
+#define DOWN_WIN   globe_macro LC(DOWN)
+#else
+// shortcut with BetterTouchTool
+#define LEFT_WIN   kp LS(LG(LEFT))
+#define RIGHT_WIN  kp LS(LG(RIGHT))
+#define UP_WIN     kp LS(LG(UP))
+#define DOWN_WIN   kp LS(LG(DOWN))
+#endif
+
 // マウス移動の設定
 
 &mmv {
@@ -63,22 +82,22 @@
     stroke-size = <100>; // default: 200
     enable-eager-mode;
 
-    right_space {
-        pattern = <GESTURE_RIGHT>;
-        bindings = <&kp RIGHT_SPACE>;
-    };
-
-    left_space {
+    ges_left_space {
         pattern = <GESTURE_LEFT>;
         bindings = <&kp LEFT_SPACE>;
     };
 
-    mission_ctrl {
+    ges_right_space {
+        pattern = <GESTURE_RIGHT>;
+        bindings = <&kp RIGHT_SPACE>;
+    };
+
+    ges_mission_ctrl {
         pattern = <GESTURE_UP>;
         bindings = <&kp MISSION_CTRL>;
     };
 
-    expose {
+    ges_expose {
         pattern = <GESTURE_DOWN>;
         bindings = <&kp EXPOSE>;
     };
@@ -100,6 +119,11 @@
         input-processors = <&zip_xy_to_scroll_mapper &zip_scroll_scaler 1 100>,
                            <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,
                            <&zip_inertia>;
+    };
+
+    tab_layer {
+        layers = <L_TAB>;
+        input-processors = <&zip_window_gesture>;
     };
 };
 
@@ -142,6 +166,34 @@
             type = <INPUT_EV_REL>;
             codes = <INPUT_REL_HWHEEL>;
             track-remainders;
+        };
+
+        zip_window_gesture: zip_window_gesture {
+            compatible = "zmk,input-processor-mouse-gesture";
+            #input-processor-cells = <0>;
+
+            stroke-size = <100>; // default: 200
+            enable-eager-mode;
+
+            ges_left_win {
+                pattern = <GESTURE_LEFT>;
+                bindings = <&LEFT_WIN>;
+            };
+
+            ges_right_win {
+                pattern = <GESTURE_RIGHT>;
+                bindings = <&RIGHT_WIN>;
+            };
+
+            ges_up_win {
+                pattern = <GESTURE_UP>;
+                bindings = <&UP_WIN>;
+            };
+
+            ges_down_win {
+                pattern = <GESTURE_DOWN>;
+                bindings = <&DOWN_WIN>;
+            };
         };
     };
 };
@@ -205,15 +257,25 @@
             #binding-cells = <0>;
             tapping-term-ms = <300>;
         };
+
+        lt_globe_macro: lt_globe_macro {
+            compatible = "zmk,behavior-hold-tap";
+            label = "T:globe macro, H:Layer";
+            bindings = <&mo>, <&globe_macro>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+        };
     };
 
     macro {
-        app_list: app_list {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
+        globe_macro: globe_macro {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
             bindings
                 = <&macro_press   &kp GLOBE>
-                , <&macro_tap     &kp LS(A)>
+                , <&macro_param_1to1>
+                , <&macro_tap     &kp MACRO_PLACEHOLDER>
                 , <&macro_release &kp GLOBE>
                 ;
         };
@@ -379,7 +441,7 @@
             bindings = <
 //╭────────────────┬────────────────┬────────────────┬────────────────╮     ╭────────────┬────────────┬────────────╮
 //|                | trackball      |                |                |     |  1         |  2         |  3         |
-  &app_list                         &kp RIGHT_TAB    &kp LEFT_TAB           &none        &none        &none
+  &mouse_gesture                    &kp RIGHT_TAB    &kp LEFT_TAB           &none        &none        &none
 //╰────────────────┴────────────────┴────────────────┴────────────────╯     ╰────────────┴────────────┴────────────╯
             >;
         };
@@ -402,9 +464,21 @@
             timeout-ms = <50>;
         };
 
-        combo_snipe_layer {
-            bindings = <&mo L_SNIPE>;
+        combo_center_win_snipe_layer {
+            bindings = <&lt_globe_macro L_SNIPE LC(C)>;
             key-positions = <0 1>;
+            timeout-ms = <50>;
+        };
+
+        combo_max_win {
+            bindings = <&MAX_WIN>;
+            key-positions = <0 1 2>;
+            timeout-ms = <50>;
+        };
+
+        combo_app_list {
+            bindings = <&APP_LIST>;
+            key-positions = <0 2>;
             timeout-ms = <50>;
         };
     };
