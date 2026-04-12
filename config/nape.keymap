@@ -171,7 +171,11 @@
         app_list: app_list {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp GLOBE>, <&macro_tap &kp LS(A)>, <&macro_release &kp GLOBE>;
+            bindings
+                = <&macro_press   &kp GLOBE>
+                , <&macro_tap     &kp LS(A)>
+                , <&macro_release &kp GLOBE>
+                ;
         };
     };
 
