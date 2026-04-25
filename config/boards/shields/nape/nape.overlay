@@ -120,6 +120,8 @@
         x-input-code = <INPUT_REL_X>;
         y-input-code = <INPUT_REL_Y>;
 
+        force-awake;
+
         // Layer 10 is the scroll layer (handled by trackball_listener above).
         // Listing it here prevents the orientation layer from updating during scroll.
         scroll-layers = <10>;
