@@ -1,6 +1,8 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <physical_layouts.dtsi>
 #include <dt-bindings/input/input-event-codes.h>
+#include <input_processors/trackball_shift.dtsi>
+#include <input_processors/trackball_direction_detection.dtsi>
 
 / {
     // LED aliases required by zmk-rgbled-widget.
@@ -62,9 +64,18 @@
     trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
+        input-processors = <&zip_trackball_shift>;
         scroller {
             layers = <10>;
-            input-processors = <&zip_xy_to_scroll_mapper>;
+            input-processors = <
+                &zip_trackball_shift
+                &zip_xy_to_scroll_mapper
+            >;
+        };
+
+        direction_detection {
+            layers = <12>;
+            input-processors = <&zip_trackball_direction_detection>;
         };
     };
 };

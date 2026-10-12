@@ -6,6 +6,8 @@ manifest:
       url-base: https://github.com/menbou0202
     - name: caksoylar
       url-base: https://github.com/caksoylar
+    - name: karbou12
+      url-base: https://github.com/karbou12
     # Additional modules containing boards/shields/custom code can be listed here as well
     # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
   projects:
@@ -14,8 +16,9 @@ manifest:
       revision: b3544e343c28580a2f5e68c23e83d6f175b8595f
       import: app/west.yml
     - name: zmk-pmw3610-driver-nape
-      remote: menbou0202
-      revision: 4be9979b9ff008b209de8c523ab2665da1adc28e
+      remote: karbou12
+      revision: console/feature/trackball-shift
+      import: true
     - name: zmk-rgbled-widget
       remote: caksoylar
       revision: e6b467792a1dabef8cfa5c9fd26bfefc9c16662b
