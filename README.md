@@ -9,3 +9,8 @@ Nape Consoleを使う場合は、別の[`console-beta`ブランチ](https://gith
 旧ZMK向けの[`basic-driver`ブランチ](https://github.com/menbou0202/zmk-config-nape/tree/basic-driver)は、トラックボールの向きを実行時に切り替えるNape独自の処理を使わず、`inorichi/zmk-pmw3610-driver`を参照する保存版です。過去の利用者のため残していますが、新規利用には推奨しません。
 
 別の旧ドライバーである[`menbou0202/zmk-pmw3610-driver`](https://github.com/menbou0202/zmk-pmw3610-driver)も過去の設定・forkの参照先として残しています。現在の`main`と`console-beta`はどちらも[`zmk-pmw3610-driver-nape`](https://github.com/menbou0202/zmk-pmw3610-driver-nape)を使用します。
+
+## `console/feature/trackball-shift` branch
+
+Trackball Shift機能を搭載し、Nape Consoleに対応したbranchとなります。
+Trackball Shift機能の概要については、[`zmk-pmw3610-driver-nape`ドライバの`console/feature/trackball-shift`branch](https://github.com/karbou12/zmk-pmw3610-driver-nape/tree/console/feature/trackball-shift)を参照してください。
