@@ -30,7 +30,7 @@ Trackball Shift機能で角度を変更した場合、角度に対応した色�
 
 本リポジトリでは`CONFIG_RGBLED_WIDGET_SHOW_LAYER_COLORS`を有効にし、以下の色を設定しています。
 
-`config/boards/shields/nape/nape.conf`
+`boards/shields/nape/nape.conf`
 ```ini
 # CONFIG_RGBLED_WIDGET_SHOW_LAYER_CHANGE=y
 CONFIG_RGBLED_WIDGET_SHOW_LAYER_COLORS=y
