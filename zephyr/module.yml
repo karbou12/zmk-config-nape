@@ -1,5 +1,6 @@
 name: zmk-config-nape
 build:
+  cmake: .
   settings:
     board_root: .
     snippet_root: .

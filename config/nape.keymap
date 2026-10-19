@@ -11,6 +11,9 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
+#include <behaviors/trackball_shift_rotation.dtsi>
+#include <behaviors/trackball_shift_reset.dtsi>
+#include <behaviors/trackball_direction_detection.dtsi>
 
 // マウス移動の設定
 
@@ -215,6 +218,15 @@
             display-name = "Orientation";
             bindings = <
 &to 2  &to 4  &to 6  &to 0  &to 5  &trans
+            >;
+        };
+
+        // レイヤー12（Trackball Shiftレイヤー）
+
+        trackball_shift_layer {
+            display-name = "Trackball Shift";
+            bindings = <
+&trans &tbr TB_CW_45  &tbr TB_CCW_45  &tb_reset  &trans  &trans
             >;
         };
     };
