@@ -6,3 +6,9 @@ url: https://github.com/cordwisteria/zmk-config-nape
 requires: [xiao_ble/nrf52840/zmk]
 features:
   - keys
+siblings:
+  - nape_console
+
+variants:
+  - id: id_nape_console
+    name: nape_console

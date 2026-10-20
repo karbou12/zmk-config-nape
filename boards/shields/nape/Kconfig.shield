@@ -1,2 +1,6 @@
 config NAPE
     def_bool $(shields_list_contains,nape)
+
+config NAPE_CONSOLE
+    def_bool $(shields_list_contains,nape_console)
+    select NAPE
