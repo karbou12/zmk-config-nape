@@ -24,3 +24,8 @@ include:
     snippet: studio-rpc-usb-uart;nape-studio
     cmake-args: -DCONFIG_NAPE_RUNTIME_COMBOS=y -DCONFIG_MAIN_STACK_SIZE=2048 -DCONFIG_ZMK_STUDIO_RPC_THREAD_STACK_SIZE=8192 -DCONFIG_ZMK_STUDIO_RPC_RX_BUF_SIZE=1024
     artifact-name: nape-console
+
+  - board: xiao_ble/nrf52840/zmk
+    shield: nape_zephyr rgbled_adapter
+    snippet: studio-rpc-usb-uart
+    artifact-name: nape-zephyr

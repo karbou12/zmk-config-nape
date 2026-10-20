@@ -4,3 +4,7 @@ config NAPE
 config NAPE_CONSOLE
     def_bool $(shields_list_contains,nape_console)
     select NAPE
+
+config NAPE_ZEPHYR
+    def_bool $(shields_list_contains,nape_zephyr)
+    select NAPE
