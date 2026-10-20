@@ -1,1 +1,34 @@
 #include "nape_common.overlay"
+
+&trackball {
+    status = "okay";
+    compatible = "pixart,pmw3610-alt";
+    reg = <0>;
+    spi-max-frequency = <2000000>;
+    irq-gpios = <&xiao_d 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+
+    // CPI settings: cpi for normal MOVE mode, snipe-cpi for precision mode
+    cpi = <800>;
+    // snipe-cpi = <200>;  // Uncomment and add snipe-layers to enable snipe mode
+
+    // Axis: no hardware inversion here.
+    // X axis inversion is applied in software after rotation via CONFIG_PMW3610_ALT_INVERT_X.
+    // swap-xy;    // Uncomment to swap X/Y at hardware level (pre-rotation)
+    // invert-x;   // Uncomment for hardware-level X inversion (pre-rotation)
+    // invert-y;   // Uncomment for hardware-level Y inversion (pre-rotation)
+
+    // Input event type/codes for mouse pointer movement
+    evt-type = <INPUT_EV_REL>;
+    x-input-code = <INPUT_REL_X>;
+    y-input-code = <INPUT_REL_Y>;
+
+    // Layer 10 is the scroll layer (handled by trackball_listener above).
+    // Listing it here prevents the orientation layer from updating during scroll.
+    scroll-layers = <10>;
+
+    // Snipe layers: uncomment and fill in layer numbers to enable snipe mode
+    // snipe-layers = <11>;
+
+    // Default orientation layer at boot (0 = 0°, 1 = 45°, ... 7 = 315°)
+    default-orientation-layer = <0>;
+};
