@@ -1,6 +1,9 @@
-name: Build ZMK firmware
+name: Build ZMK firmware for nape console
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@9ebbeff0a8b69a42f14aec022cdf16c7a107b9e0
+    with:
+      config_path: "config_console"
+      build_matrix_path: "build_console.yaml"
