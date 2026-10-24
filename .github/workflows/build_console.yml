@@ -1,5 +1,22 @@
 name: Build ZMK firmware for nape console
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branches-ignore:
+      - my/develop
+    paths:
+      - 'boards/shields/nape/Kconfig.*'
+      - 'boards/shields/nape/nape.zmk.yml'
+      - 'boards/shields/nape/nape_common.overlay'
+      - 'boards/snippets/**'
+      - 'src/**'
+      - 'zephyr/**'
+      - 'CMakeLists.txt'
+      - 'boards/shields/nape/nape_console.*'
+      - 'config_console/**'
+      - 'build_console.yaml'
+      - '.github/workflows/build_console.yml'
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   build:
