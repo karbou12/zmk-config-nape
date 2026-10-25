@@ -9,9 +9,12 @@ features:
 siblings:
   - nape_console
   - nape_zephyr
+  - nape_dya_studio
 
 variants:
   - id: id_nape_console
     name: nape_console
   - id: id_nape_zephyr
     name: nape_zephyr
+  - id: id_nape_dya_studio
+    name: nape_dya_studio

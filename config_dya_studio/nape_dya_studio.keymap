@@ -1,0 +1,245 @@
+// マウス移動とスクロールのデフォルト値を設定
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 800
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 120
+
+#include <dt-bindings/zmk/mouse.h>
+#include <input/processors.dtsi>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/pointing.h>
+#include <behaviors/trackball_shift_rotation.dtsi>
+#include <behaviors/trackball_shift_reset.dtsi>
+#include <behaviors/trackball_direction_detection.dtsi>
+
+// マウス移動の設定
+
+&mmv {
+    delay-ms = <0>;              // 遅延なし
+    trigger-period-ms = <10>;    // 10ミリ秒ごとにトリガー
+    time-to-max-speed-ms = <0>;  // 即座に最大速度に
+    acceleration-exponent = <1>;  // 線形加速
+};
+
+// マウススクロールの設定
+
+&msc {
+    delay-ms = <0>;              // 遅延なし
+    trigger-period-ms = <10>;    // 10ミリ秒ごとにトリガー
+    time-to-max-speed-ms = <0>;  // 即座に最大速度に
+    acceleration-exponent = <0>;  // 加速なし
+};
+
+// 入力プロセッサーの設定
+
+/ {
+    input_processors {
+        // 垂直スクロールのスケーラー
+
+        zip_wheel_scaler: zip_wheel_scaler {
+            compatible = "zmk,input-processor-scaler";
+            #input-processor-cells = <2>;
+            type = <INPUT_EV_REL>;
+            codes = <INPUT_REL_WHEEL>;
+            track-remainders;
+        };
+
+        // 水平スクロールのスケーラー
+
+        zip_hwheel_scaler: zip_hwheel_scaler {
+            compatible = "zmk,input-processor-scaler";
+            #input-processor-cells = <2>;
+            type = <INPUT_EV_REL>;
+            codes = <INPUT_REL_HWHEEL>;
+            track-remainders;
+        };
+    };
+};
+
+// カスタムビヘイビアの定義
+
+/ {
+    behaviors {
+        // マウスカーソル移動の回転検出
+
+        mouse_mv: mouse_cursor_move {
+            compatible = "zmk,behavior-sensor-rotate-var";
+            #sensor-binding-cells = <2>;
+            bindings = <&mmv>, <&mmv>;
+
+            tap-ms = <10>;
+        };
+
+        // マウスホイールスクロールの回転検出
+
+        mouse_scrl: mouse_wheel_scrl {
+            compatible = "zmk,behavior-sensor-rotate-var";
+            #sensor-binding-cells = <2>;
+            bindings = <&msc>, <&msc>;
+
+            tap-ms = <10>;
+        };
+
+        lt_mkp: lt_mkp {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LT_MKP";
+            bindings = <&mo>, <&mkp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+        };
+
+        mod_mkp: mod_mkp {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MOD_MKP";
+            bindings = <&kp>, <&mkp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+        };
+    };
+
+    // キーマップの定義
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        // レイヤー0（0°、USBポートを下向きにした状態）"
+
+        orientation0_layer {
+            display-name = "0°";
+            bindings = <
+&lt_mkp 10 MB3  &mkp MB2  &mkp MB1  &mo 8  &mo 9  &mo 11
+            >;
+        };
+
+        // レイヤー1（時計回り45°）
+
+        orientation45_layer {
+            display-name = "45°";
+            bindings = <
+&lt_mkp 10 MB3  &mkp MB2  &mkp MB1  &mo 8  &mo 9  &mo 11
+            >;
+        };
+
+        // レイヤー2（時計回り90°）
+
+        orientation90_layer {
+            display-name = "90°";
+            bindings = <
+&lt_mkp 10 MB3  &mkp MB2  &mkp MB1  &mo 8  &mo 9  &mo 11
+            >;
+        };
+
+        // レイヤー3（時計回り135°）
+
+        orientation135_layer {
+            display-name = "135°";
+            bindings = <
+&lt_mkp 10 MB3  &mkp MB2  &mkp MB1  &mo 8  &mo 9  &mo 11
+            >;
+        };
+
+        // レイヤー4（時計回り180°）
+
+        orientation180_layer {
+            display-name = "180°";
+            bindings = <
+&lt_mkp 10 MB3  &mkp MB2  &mkp MB1  &mo 8  &mo 9  &mo 11
+            >;
+        };
+
+        // レイヤー5（時計回り225°）
+
+        orientation225_layer {
+            display-name = "225°";
+            bindings = <
+&lt_mkp 10 MB3  &mkp MB2  &mkp MB1  &mo 8  &mo 9  &mo 11
+            >;
+        };
+
+        // レイヤー6（時計回り270°）
+
+        orientation270_layer {
+            display-name = "270°";
+            bindings = <
+&lt_mkp 10 MB3  &mkp MB2  &mkp MB1  &mo 8  &mo 9  &mo 11
+            >;
+        };
+
+        // レイヤー7（時計回り315°）
+
+        orientation315_layer {
+            display-name = "315°";
+            bindings = <
+&lt_mkp 10 MB3  &mkp MB2  &mkp MB1  &mo 8  &mo 9  &mo 11
+            >;
+        };
+
+        // レイヤー8（Bluetooth選択レイヤー）
+
+        btsel_layer {
+            display-name = "Bluetooth Select";
+            bindings = <
+&bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &trans  &bt BT_SEL 3  &bt BT_SEL 4
+            >;
+        };
+
+        // レイヤー9（Bluetoothクリアレイヤー）
+
+        btclr_layer {
+            display-name = "Bluetooth Clear";
+            bindings = <
+&studio_unlock  &none  &none  &bt BT_CLR  &none  &bt BT_CLR_ALL
+            >;
+        };
+
+        // レイヤー10（スクロールレイヤー）
+
+        scroll_layer {
+            display-name = "Scroll";
+            bindings = <
+&mkp MB3  &mkp MB4  &mkp MB5  &trans  &trans  &trans
+            >;
+
+            // トラックボールの動きをスクロールに変換
+
+            sensor-bindings =
+                <&mouse_scrl SCRL_DOWN SCRL_UP>,
+                <&mouse_scrl SCRL_UP SCRL_DOWN>;
+        };
+
+        // レイヤー11（使用向き選択レイヤー）
+
+        orientation_layer {
+            display-name = "Orientation";
+            bindings = <
+&to 2  &to 4  &to 6  &to 0  &to 5  &trans
+            >;
+        };
+
+        // レイヤー12（Trackball Shiftレイヤー）
+
+        trackball_shift_layer {
+            display-name = "Trackball Shift";
+            bindings = <
+&trans &tbr TB_CW_45  &tbr TB_CCW_45  &tb_reset  &trans  &trans
+            >;
+        };
+    };
+};
+
+/ {
+    combos {
+        compatible = "zmk,combos";
+
+        // Key1、2同時押しでスクロールレイヤーへ
+
+        combo_layer9 {
+            bindings = <&mo 10>;
+            key-positions = <1 2>;
+            timeout-ms = <50>;
+        };
+    };
+};
