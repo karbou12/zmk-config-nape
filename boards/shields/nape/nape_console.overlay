@@ -7,6 +7,10 @@
     spi-max-frequency = <2000000>;
     irq-gpios = <&xiao_d 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
 
+    // badjeff-derived driver: keep the sensor awake while ZMK is active.
+    // The driver releases forced-awake mode on IDLE/SLEEP.
+    force-awake;
+
     // CPI settings: cpi for normal MOVE mode, snipe-cpi for precision mode
     cpi = <800>;
     // snipe-cpi = <200>;  // Uncomment and add snipe-layers to enable snipe mode
