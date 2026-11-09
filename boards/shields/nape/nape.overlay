@@ -113,6 +113,9 @@
     pinctrl-names = "default", "sleep";
     cs-gpios = <&xiao_d 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
 
+    // disabled default. enabled by snippet.
     trackball: trackball@0 {
+        status = "disabled";
+        reg = <0>;
     };
 };
