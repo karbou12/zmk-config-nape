@@ -4,14 +4,11 @@ on:
     branches-ignore:
       - my/develop
     paths:
-      - 'boards/shields/nape/Kconfig.*'
-      - 'boards/shields/nape/nape.zmk.yml'
-      - 'boards/shields/nape/nape_common.overlay'
-      - 'boards/snippets/**'
+      - 'boards/shields/nape/*'
       - 'src/**'
       - 'zephyr/**'
       - 'CMakeLists.txt'
-      - 'boards/shields/nape/nape_zephyr.*'
+      - 'snippets/nape-zephyr/*'
       - 'config_zephyr/**'
       - 'build_zephyr.yaml'
       - '.github/workflows/build_zephyr.yml'

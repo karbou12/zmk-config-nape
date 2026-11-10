@@ -1,0 +1,4 @@
+name: nape-console
+append:
+  EXTRA_CONF_FILE: nape_console.conf
+  EXTRA_DTC_OVERLAY_FILE: nape_console.overlay

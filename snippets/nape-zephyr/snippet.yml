@@ -1,0 +1,4 @@
+name: nape-zephyr
+append:
+  EXTRA_CONF_FILE: nape_zephyr.conf
+  EXTRA_DTC_OVERLAY_FILE: nape_zephyr.overlay
