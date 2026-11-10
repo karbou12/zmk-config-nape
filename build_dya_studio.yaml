@@ -20,6 +20,6 @@
 ---
 include:
   - board: xiao_ble/nrf52840/zmk
-    shield: nape_dya_studio rgbled_adapter
-    snippet: studio-rpc-usb-uart
+    shield: nape rgbled_adapter
+    snippet: nape-dya-studio;studio-rpc-usb-uart
     artifact-name: nape-dya-studio
