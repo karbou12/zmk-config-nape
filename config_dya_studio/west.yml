@@ -84,6 +84,21 @@ manifest:
     - name: zmk-module-settings-rpc
       remote: cormoran
       revision: main
+    - name: zmk-feature-device-info
+      remote: cormoran
+      revision: main
+    - name: zmk-feature-watchdog
+      remote: cormoran
+      revision: main
+    - name: zmk-module-devtool
+      remote: cormoran
+      revision: main
+    - name: zmk-feature-zephyr-setting-expose
+      remote: cormoran
+      revision: main
+    - name: zmk-feature-kscan-diagnostics
+      remote: cormoran
+      revision: main
     - name: zmk-rgbled-widget
       remote: karbou12
       revision: feature/color-indication-api
