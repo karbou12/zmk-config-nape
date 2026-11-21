@@ -13,3 +13,15 @@
     force-awake;
 };
 
+/ {
+    trackball0: trackball0 {
+        compatible = "cormoran,physical-layout-trackball";
+        display-name = "Trackball";
+        size = <100>;
+        x = <100>;
+        y = <100>;
+
+        linked-device-identifiers = "trackball_sensor", "trackball_button";
+        linked-subsystems = "zmk__trackball", "zmk__pointing_buttons";
+    };
+};

@@ -50,6 +50,22 @@ manifest:
       remote: cormoran
       revision: main
       groups: [dev]
+    - name: zmk-feature-runtime-macro
+      remote: cormoran
+      revision: main
+      groups: [dev]
+    - name: zmk-feature-runtime-combo
+      remote: cormoran
+      revision: main
+      groups: [dev]
+    - name: zmk-feature-input-stream
+      remote: cormoran
+      revision: main
+      groups: [dev]
+    - name: zmk-feature-module-physical-layout
+      remote: cormoran
+      revision: main
+      groups: [dev]
     - name: zmk-rgbled-widget
       remote: karbou12
       revision: feature/color-indication-api
