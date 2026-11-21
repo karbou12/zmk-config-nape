@@ -66,6 +66,12 @@ manifest:
       remote: cormoran
       revision: main
       groups: [dev]
+    - name: zmk-module-runtime-input-processor
+      remote: cormoran
+      revision: main
+    - name: zmk-driver-pmw3610-with-custom-studio-rpc
+      remote: cormoran
+      revision: main
     - name: zmk-rgbled-widget
       remote: karbou12
       revision: feature/color-indication-api
