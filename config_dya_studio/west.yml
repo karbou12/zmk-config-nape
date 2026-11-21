@@ -81,6 +81,9 @@ manifest:
     - name: zmk-feature-os-detection
       remote: cormoran
       revision: main
+    - name: zmk-module-settings-rpc
+      remote: cormoran
+      revision: main
     - name: zmk-rgbled-widget
       remote: karbou12
       revision: feature/color-indication-api
