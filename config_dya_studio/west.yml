@@ -72,6 +72,15 @@ manifest:
     - name: zmk-driver-pmw3610-with-custom-studio-rpc
       remote: cormoran
       revision: main
+    - name: zmk-module-ble-management
+      remote: cormoran
+      revision: main
+    - name: zmk-feature-default-layer
+      remote: cormoran
+      revision: codex/custom-rpc-rewrite
+    - name: zmk-feature-os-detection
+      remote: cormoran
+      revision: main
     - name: zmk-rgbled-widget
       remote: karbou12
       revision: feature/color-indication-api
