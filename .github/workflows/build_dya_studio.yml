@@ -1,0 +1,23 @@
+name: Build ZMK firmware for DYA Studio
+on:
+  push:
+    branches-ignore:
+      - my/develop
+    paths:
+      - 'boards/shields/nape/*'
+      - 'src/**'
+      - 'zephyr/**'
+      - 'CMakeLists.txt'
+      - 'snippets/nape-dya-studio/*'
+      - 'config_dya_studio/**'
+      - 'build_dya_studio.yaml'
+      - '.github/workflows/build_dya_studio.yml'
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    with:
+      config_path: "config_dya_studio"
+      build_matrix_path: "build_dya_studio.yaml"

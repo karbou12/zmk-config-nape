@@ -1,0 +1,4 @@
+name: nape-dya-studio
+append:
+  EXTRA_CONF_FILE: nape_dya_studio.conf
+  EXTRA_DTC_OVERLAY_FILE: nape_dya_studio.overlay

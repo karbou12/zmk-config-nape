@@ -1,0 +1,111 @@
+manifest:
+  remotes:
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+    - name: menbou0202
+      url-base: https://github.com/menbou0202
+    - name: caksoylar
+      url-base: https://github.com/caksoylar
+    - name: karbou12
+      url-base: https://github.com/karbou12
+    - name: cormoran
+      url-base: https://github.com/cormoran
+    # Additional modules containing boards/shields/custom code can be listed here as well
+    # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
+  projects:
+    - name: zmk
+      remote: cormoran
+      revision: main+dya
+      clone-depth: 1
+      import:
+        file: app/west.yml
+    - name: zephyr
+      remote: cormoran
+      revision: v4.1.0+zmk-fixes+nrf-half-duplex-uart
+      clone-depth: 1
+      import:
+        name-blocklist:
+          - ci-tools
+          - hal_altera
+          - hal_cypress
+          - hal_infineon
+          - hal_microchip
+          - hal_nxp
+          - hal_openisa
+          - hal_xtensa
+          - hal_st
+          - hal_ti
+          - loramac-node
+          - mcuboot
+          - mcumgr
+          - net-tools
+          - openthread
+          - edtt
+          - trusted-firmware-m
+    - name: zmk-feature-custom-settings
+      remote: cormoran
+      revision: main
+      groups: [dev]
+    - name: zmk-feature-fast-keymap
+      remote: cormoran
+      revision: main
+      groups: [dev]
+    - name: zmk-feature-runtime-macro
+      remote: cormoran
+      revision: main
+      groups: [dev]
+    - name: zmk-feature-runtime-combo
+      remote: cormoran
+      revision: main
+      groups: [dev]
+    - name: zmk-feature-input-stream
+      remote: cormoran
+      revision: main
+      groups: [dev]
+    - name: zmk-feature-module-physical-layout
+      remote: cormoran
+      revision: main
+      groups: [dev]
+    - name: zmk-module-runtime-input-processor
+      remote: cormoran
+      revision: main
+    - name: zmk-driver-pmw3610-with-custom-studio-rpc
+      remote: cormoran
+      revision: main
+    - name: zmk-module-ble-management
+      remote: cormoran
+      revision: main
+    - name: zmk-feature-default-layer
+      remote: cormoran
+      revision: codex/custom-rpc-rewrite
+    - name: zmk-feature-os-detection
+      remote: cormoran
+      revision: main
+    - name: zmk-module-settings-rpc
+      remote: cormoran
+      revision: main
+    - name: zmk-feature-device-info
+      remote: cormoran
+      revision: main
+    - name: zmk-feature-watchdog
+      remote: cormoran
+      revision: main
+    - name: zmk-module-devtool
+      remote: cormoran
+      revision: main
+    - name: zmk-feature-zephyr-setting-expose
+      remote: cormoran
+      revision: main
+    - name: zmk-feature-kscan-diagnostics
+      remote: cormoran
+      revision: main
+    - name: zmk-rgbled-widget
+      remote: karbou12
+      revision: feature/color-indication-api
+      groups: [dev]
+    - name: zmk-trackball-shift
+      remote: karbou12
+      revision: main
+      groups: [dev]
+  self:
+    path: config

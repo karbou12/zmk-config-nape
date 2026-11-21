@@ -1,0 +1,53 @@
+#include <input/processors/runtime-input-processor.dtsi>
+
+&trackball_listener {
+    input-processors = <
+        &mouse_runtime_input_processor
+        &zip_trackball_shift
+    >;
+
+    scroller {
+        layers = <10>;
+        input-processors = <
+            &mouse_runtime_input_processor
+            &zip_trackball_shift
+            &zip_xy_to_scroll_mapper
+        >;
+    };
+
+    direction_detection {
+        layers = <12>;
+        input-processors = <
+            &mouse_runtime_input_processor
+            &zip_trackball_direction_detection
+        >;
+    };
+};
+
+&trackball {
+    status = "okay";
+    compatible = "cormoran,pmw3610";
+    spi-max-frequency = <2000000>;
+    irq-gpios = <&xiao_d 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+
+    force-awake;
+
+    cpi = <800>;
+
+    evt-type = <INPUT_EV_REL>;
+    x-input-code = <INPUT_REL_X>;
+    y-input-code = <INPUT_REL_Y>;
+};
+
+/ {
+    trackball0: trackball0 {
+        compatible = "cormoran,physical-layout-trackball";
+        display-name = "Trackball";
+        size = <100>;
+        x = <100>;
+        y = <100>;
+
+        linked-device-identifiers = "trackball_sensor", "trackball_button";
+        linked-subsystems = "zmk__trackball", "zmk__pointing_buttons";
+    };
+};
