@@ -12,6 +12,7 @@ manifest:
       url-base: https://github.com/cormoran
     # Additional modules containing boards/shields/custom code can be listed here as well
     # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
+  group-filter: [-connection, -troubleshoot]
   projects:
     - name: zmk
       remote: cormoran
@@ -45,27 +46,21 @@ manifest:
     - name: zmk-feature-custom-settings
       remote: cormoran
       revision: main
-      groups: [dev]
     - name: zmk-feature-fast-keymap
       remote: cormoran
       revision: main
-      groups: [dev]
     - name: zmk-feature-runtime-macro
       remote: cormoran
       revision: main
-      groups: [dev]
     - name: zmk-feature-runtime-combo
       remote: cormoran
       revision: main
-      groups: [dev]
     - name: zmk-feature-input-stream
       remote: cormoran
       revision: main
-      groups: [dev]
     - name: zmk-feature-module-physical-layout
       remote: cormoran
       revision: main
-      groups: [dev]
     - name: zmk-module-runtime-input-processor
       remote: cormoran
       revision: main
@@ -75,30 +70,38 @@ manifest:
     - name: zmk-module-ble-management
       remote: cormoran
       revision: main
+      groups: [connection]
     - name: zmk-feature-default-layer
       remote: cormoran
       revision: codex/custom-rpc-rewrite
+      groups: [connection]
     - name: zmk-feature-os-detection
       remote: cormoran
       revision: main
+      groups: [connection]
     - name: zmk-module-settings-rpc
       remote: cormoran
       revision: main
     - name: zmk-feature-device-info
       remote: cormoran
       revision: main
+      groups: [troubleshoot]
     - name: zmk-feature-watchdog
       remote: cormoran
       revision: main
+      groups: [troubleshoot]
     - name: zmk-module-devtool
       remote: cormoran
       revision: main
+      groups: [troubleshoot]
     - name: zmk-feature-zephyr-setting-expose
       remote: cormoran
       revision: main
+      groups: [troubleshoot]
     - name: zmk-feature-kscan-diagnostics
       remote: cormoran
       revision: main
+      groups: [troubleshoot]
     - name: zmk-rgbled-widget
       remote: karbou12
       revision: feature/color-indication-api
