@@ -18,4 +18,15 @@ config NAPE_DEFAULT_LAYER
       5: 225°
       6: 270° USBポートが右
       7: 315°
+
+if ZMK_TRACKBALL_SHIFT
+    config ZMK_TRACKBALL_SHIFT_LAZY_LOAD
+        default n
+
+    if CONFIG_PMW3610_ALT
+        config ZMK_TRACKBALL_SHIFT_LAZY_LOAD
+            default y
+    endif
+endif
+
 endif
